@@ -105,12 +105,6 @@
     .panel.active { display: block; }
 
     /* SETUP NOTICE */
-    .setup-notice {
-      background: #fffbeb; border: 1px solid #fcd34d; border-radius: 12px;
-      padding: 0.9rem 1.2rem; font-size: 0.83rem; color: #92400e;
-      margin-bottom: 18px; line-height: 1.6;
-    }
-    .setup-notice code { background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 4px; font-family: monospace; }
 
     /* SECTION LABEL */
     .section-label {
@@ -376,9 +370,6 @@
 
     <!-- UPLOAD PANEL -->
     <div class="panel active" id="panelUpload">
-      <div class="setup-notice" id="setupNotice">
-        ⚙️ <strong>Setup:</strong> Place <code>model.json</code>, <code>metadata.json</code>, and <code>weights.bin</code> in a <code>model/</code> folder next to this HTML file. Trained to detect: <strong>Leaf Blight</strong> and <strong>Leaf Spot</strong>.
-      </div>
 
       <span class="section-label">Step 1 — Upload Leaf Image</span>
 
@@ -559,16 +550,16 @@ const statusText = document.getElementById('statusText');
 async function loadModel() {
   try {
     model = await tmImage.load(
-      "https://ARCHIT-RAVIKUMAR.github.io/ai-farm-assistant-/model/model.json",
-      "https://ARCHIT-RAVIKUMAR.github.io/ai-farm-assistant-/model/metadata.json"
+      "https://teachablemachine.withgoogle.com/models/3M9ChApGf/model.json",
+      "https://teachablemachine.withgoogle.com/models/3M9ChApGf/metadata.json"
     );
     statusDot.classList.add('ready');
     statusText.textContent = "Model Ready ✓";
-    document.getElementById('setupNotice').style.display = 'none';
+
     setTimeout(()=>{ document.getElementById('modelStatus').style.opacity='0.5'; }, 3000);
   } catch(e) {
     statusDot.classList.add('error');
-    statusText.textContent = "Model not found — see setup notice";
+    statusText.textContent = "Model failed to load — check console";
   }
 }
 loadModel();
@@ -732,7 +723,7 @@ document.getElementById('analyzeCamBtn').addEventListener('click', async ()=>{
 // ── SHARED ANALYSIS ──────────────────────────────────────────
 async function runAnalysis(imageEl, source, btn, loadingBar, loadingTextEl, progressFill, errorBox, errorMsgEl) {
   if(!model){
-    errorMsgEl.textContent="AI model not loaded. Check model folder setup.";
+    errorMsgEl.textContent="AI model not loaded. Please refresh and try again.";
     errorBox.classList.add('visible'); return;
   }
   btn.disabled=true;
