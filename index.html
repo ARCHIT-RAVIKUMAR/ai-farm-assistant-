@@ -502,18 +502,24 @@
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 <script>
 // ── REMEDY DATABASE ──────────────────────────────────────────
+// 10 Classes: Leaf Blight, Leaf Spot, Tomato Leaf Curl,
+// Tomato Fusarium Wilt, Banana Panama Wilt, Banana Sigatoka,
+// Banana Bunchy Top, Chilli Anthracnose, Chilli Powdery Mildew, Healthy
 const REMEDY_DB = {
+
+  // ── GENERAL ─────────────────────────────────────────────────
   "leaf blight": {
     severity:"high", icon:"🔴",
     latin:"Xanthomonas oryzae / Helminthosporium spp.",
-    desc:"Leaf blight causes water-soaked lesions that rapidly turn brown and kill leaf tissue. Spreads quickly in warm, humid, and waterlogged conditions and can devastate entire crops if not controlled early.",
+    desc:"Leaf blight causes water-soaked lesions that rapidly turn brown and kill leaf tissue. Spreads quickly in warm, humid and waterlogged conditions and can devastate entire crops if not controlled early.",
     remedies:[
       {icon:"💊",title:"Chemical Control",steps:["Apply copper-based fungicide every 7–10 days","Use Mancozeb or Carbendazim as directed","Avoid spraying in direct midday sunlight","Rotate fungicide groups to prevent resistance"]},
-      {icon:"💧",title:"Irrigation Management",steps:["Reduce overhead irrigation immediately","Switch to drip or base-level watering","Ensure field drainage channels are clear","Do not irrigate evenings — leaves must dry overnight"]},
+      {icon:"💧",title:"Irrigation Management",steps:["Reduce overhead irrigation immediately","Switch to drip or base-level watering","Ensure field drainage channels are clear","Do not irrigate in evenings — leaves must dry overnight"]},
       {icon:"🌿",title:"Cultural Practices",steps:["Remove and burn all infected leaves promptly","Maintain recommended spacing between plants","Avoid walking through wet infected fields","Sterilize all tools with 10% bleach solution"]},
       {icon:"🛡️",title:"Prevention",steps:["Use certified disease-resistant seed varieties","Apply balanced NPK — avoid excess nitrogen","Inspect crops at least twice a week","Keep field records to track outbreak patterns"]},
     ]
   },
+
   "leaf spot": {
     severity:"medium", icon:"🟡",
     latin:"Cercospora spp. / Alternaria spp.",
@@ -525,6 +531,107 @@ const REMEDY_DB = {
       {icon:"🌱",title:"Soil & Nutrition",steps:["Ensure adequate potassium for plant immunity","Avoid excessive nitrogen fertilization","Test soil pH — maintain between 6.0 and 7.0","Apply organic compost to improve soil health"]},
     ]
   },
+
+  // ── TOMATO 🍅 ────────────────────────────────────────────────
+  "tomato leaf curl": {
+    severity:"high", icon:"🔴",
+    latin:"Tomato Leaf Curl Virus (ToLCV) — Begomovirus",
+    desc:"Tomato Leaf Curl is a viral disease transmitted by whiteflies. Leaves curl upward, turn yellow and plants become stunted. It spreads rapidly and can destroy an entire tomato crop if whitefly population is not controlled.",
+    remedies:[
+      {icon:"🦟",title:"Control Whiteflies",steps:["Spray Imidacloprid or Thiamethoxam to kill whiteflies","Use yellow sticky traps around the field","Spray Neem oil (5ml/L) weekly as organic option","Avoid planting near infected fields"]},
+      {icon:"🌿",title:"Remove Infected Plants",steps:["Uproot and burn severely infected plants immediately","Do not leave infected plants in the field","Wash hands after handling infected plants","Avoid replanting in same spot same season"]},
+      {icon:"🛡️",title:"Prevention",steps:["Use virus-free certified seedlings","Grow resistant varieties like Arka Rakshak","Cover nursery beds with insect-proof nets","Maintain 45–60 cm spacing between plants"]},
+      {icon:"💊",title:"Supportive Treatment",steps:["Spray micronutrients — zinc and boron","Apply potassium-rich fertilizer to boost immunity","Avoid excess nitrogen which attracts whiteflies","Remove and destroy crop debris after harvest"]},
+    ]
+  },
+
+  "tomato fusarium wilt": {
+    severity:"high", icon:"🔴",
+    latin:"Fusarium oxysporum f.sp. lycopersici",
+    desc:"Fusarium Wilt is a soil-borne fungal disease that blocks the water-conducting vessels of tomato plants. Leaves turn yellow from the bottom up, plants wilt during the day and the stem shows brown discoloration inside.",
+    remedies:[
+      {icon:"🌱",title:"Soil Treatment",steps:["Drench soil with Carbendazim 1g/L before planting","Apply Trichoderma viride to soil as biocontrol","Solarize soil by covering with clear plastic for 4–6 weeks","Avoid waterlogging — improve drainage immediately"]},
+      {icon:"🔄",title:"Crop Rotation",steps:["Do not grow tomato in same field for 3–4 years","Rotate with non-host crops like maize or onion","Avoid planting potato or brinjal — same family","Record field history to plan rotations properly"]},
+      {icon:"🌿",title:"Remove Infected Plants",steps:["Uproot wilted plants with roots completely","Do not compost infected material — burn it","Disinfect all tools with bleach after use","Mark infected areas to avoid next season"]},
+      {icon:"🛡️",title:"Prevention",steps:["Use Fusarium-resistant varieties like Arka Vikas","Treat seeds with Thiram 2g/kg before sowing","Maintain soil pH between 6.0–6.5","Apply well-decomposed organic compost to soil"]},
+    ]
+  },
+
+  // ── BANANA 🍌 ────────────────────────────────────────────────
+  "banana panama wilt": {
+    severity:"high", icon:"🔴",
+    latin:"Fusarium oxysporum f.sp. cubense (Foc)",
+    desc:"Panama Wilt is one of the most destructive banana diseases worldwide. The fungus attacks roots and blocks water flow, causing leaves to yellow and collapse from the outside inward. Internal stem shows red-brown discoloration. No cure once infected.",
+    remedies:[
+      {icon:"⚡",title:"Act Immediately",steps:["Uproot and destroy infected plants completely","Do not replant banana in same soil for 5–10 years","Quarantine the affected area from other plants","Report to local agriculture department if widespread"]},
+      {icon:"🌱",title:"Soil Management",steps:["Apply lime to raise soil pH above 7.0","Drench with Trichoderma-based biocontrol agents","Avoid moving soil from infected to healthy areas","Improve drainage — fungus thrives in waterlogged soil"]},
+      {icon:"🛡️",title:"Prevention",steps:["Plant only certified disease-free suckers","Use resistant varieties like FHIA-01 or Yangambi","Avoid wounding roots during cultivation","Disinfect tools with 10% bleach between plants"]},
+      {icon:"📋",title:"Long Term Management",steps:["Practice 10-year crop rotation in infected fields","Use tissue culture plants from certified labs","Monitor neighboring farms for early signs","Keep detailed field records of disease occurrence"]},
+    ]
+  },
+
+  "banana sigatoka": {
+    severity:"medium", icon:"🟡",
+    latin:"Mycosphaerella musicola / Mycosphaerella fijiensis",
+    desc:"Sigatoka (Yellow/Black) causes brown streaks and spots on banana leaves that expand and kill leaf tissue. Severely infected plants produce smaller, poor quality bunches. Spreads rapidly in humid, wet conditions.",
+    remedies:[
+      {icon:"✂️",title:"Remove Infected Leaves",steps:["Remove and destroy leaves with more than 50% infection","Cut leaves at the base — do not leave stumps","Bury or burn removed leaves away from plantation","Improve air circulation by removing excess leaves"]},
+      {icon:"💊",title:"Fungicide Spray",steps:["Apply Propiconazole or Mancozeb every 21 days","Spray both upper and lower leaf surfaces thoroughly","Rotate fungicides to prevent resistance","Spray early morning or evening — not in rain"]},
+      {icon:"🌿",title:"Cultural Practices",steps:["Maintain proper spacing — 2x2 meters minimum","Remove dried leaves regularly","Avoid over-irrigation — keep leaves dry","Apply mulch to prevent soil splash on leaves"]},
+      {icon:"🛡️",title:"Prevention",steps:["Plant resistant varieties where available","Apply balanced NPK fertilizer regularly","Ensure good drainage in the plantation","Monitor weekly especially during rainy season"]},
+    ]
+  },
+
+  "banana bunchy top": {
+    severity:"high", icon:"🔴",
+    latin:"Banana Bunchy Top Virus (BBTV) — Babuvirus",
+    desc:"Banana Bunchy Top is a devastating viral disease transmitted by banana aphids. Infected plants show dark green streaks on leaves, leaves become narrow and bunch together at the top. Plants never produce fruit and spread virus to healthy plants.",
+    remedies:[
+      {icon:"⚡",title:"Remove Infected Plants",steps:["Uproot and destroy ALL infected plants immediately","Inject stem with kerosene before uprooting to kill aphids","Do not replant banana for at least 6 months in same area","Never use suckers from infected plants"]},
+      {icon:"🦟",title:"Control Aphids",steps:["Spray Dimethoate or Imidacloprid to kill banana aphids","Apply Neem oil spray weekly as organic option","Install yellow sticky traps around plantation","Monitor undersides of leaves for aphid colonies"]},
+      {icon:"🛡️",title:"Prevention",steps:["Use only virus-free certified tissue culture plants","Inspect new planting material thoroughly","Establish new plantation away from infected areas","Create buffer zones between old and new plantations"]},
+      {icon:"📋",title:"Community Action",steps:["Inform neighboring farmers immediately","Coordinate mass roguing of infected plants in area","Contact agriculture extension for support","Report to plant quarantine authorities if widespread"]},
+    ]
+  },
+
+  // ── CHILLI 🌶️ ───────────────────────────────────────────────
+  "chilli anthracnose": {
+    severity:"high", icon:"🔴",
+    latin:"Colletotrichum capsici / Colletotrichum gloeosporioides",
+    desc:"Chilli Anthracnose causes dark, sunken, circular spots on fruits and leaves. The center of spots often turns orange or salmon-colored with fungal spores. Infected fruits rot and become unmarketable. Spreads rapidly in warm, wet conditions.",
+    remedies:[
+      {icon:"💊",title:"Fungicide Treatment",steps:["Spray Carbendazim 1g/L or Mancozeb 2g/L","Apply every 7–10 days during fruiting stage","Add Copper Oxychloride for broad protection","Spray before rain season for preventive action"]},
+      {icon:"✂️",title:"Remove Infected Material",steps:["Pick and destroy all infected fruits immediately","Remove infected plant parts and burn them","Never leave rotting fruits on the ground","Sanitize harvesting tools after each use"]},
+      {icon:"🌿",title:"Cultural Practices",steps:["Avoid overhead irrigation — use drip irrigation","Maintain wide spacing for good air circulation","Stake plants to keep fruits off the ground","Avoid working in field when plants are wet"]},
+      {icon:"🛡️",title:"Prevention",steps:["Treat seeds with Thiram or Captan before sowing","Use disease-free certified seedlings","Apply Trichoderma to soil before planting","Rotate crops — avoid chilli in same field consecutively"]},
+    ]
+  },
+
+  "chilli powdery mildew": {
+    severity:"medium", icon:"🟡",
+    latin:"Leveillula taurica / Oidiopsis taurica",
+    desc:"Chilli Powdery Mildew appears as white powdery patches on the upper surface of leaves. Infected leaves turn yellow and drop prematurely. Unlike most fungal diseases, it thrives in dry conditions with moderate humidity and can reduce yield significantly.",
+    remedies:[
+      {icon:"🧴",title:"Organic Spray",steps:["Mix baking soda 5g + neem oil 5ml in 1L water","Spray on affected leaves every 5–7 days","Diluted milk spray (1:9 ratio) also effective","Apply in early morning for best results"]},
+      {icon:"💊",title:"Chemical Control",steps:["Spray Hexaconazole or Dinocap fungicide","Apply Wettable Sulphur 2g/L as effective option","Repeat every 10–14 days until controlled","Avoid spraying in temperatures above 35°C"]},
+      {icon:"☀️",title:"Improve Conditions",steps:["Prune overcrowded branches for better airflow","Ensure plants get adequate sunlight","Avoid excess nitrogen fertilization","Remove and destroy heavily infected leaves"]},
+      {icon:"🛡️",title:"Prevention",steps:["Plant resistant varieties where available","Maintain proper plant spacing","Avoid water stress — keep soil evenly moist","Monitor regularly especially in dry weather"]},
+    ]
+  },
+
+  // ── HEALTHY ✅ ───────────────────────────────────────────────
+  "healthy": {
+    severity:"healthy", icon:"✅",
+    latin:"No pathogen detected",
+    desc:"Your plant appears perfectly healthy! No signs of disease were detected. Continue your current care practices and monitor regularly to keep your crops in great condition.",
+    remedies:[
+      {icon:"💧",title:"Maintain Watering",steps:["Keep consistent watering schedule","Water at base of plants — avoid wetting leaves","Water deeply but infrequently","Check soil moisture before each watering"]},
+      {icon:"🌱",title:"Fertilize Regularly",steps:["Apply balanced NPK fertilizer monthly","Use organic compost for long-term soil health","Test soil nutrients every season","Avoid over-fertilizing — can attract pests"]},
+      {icon:"🔍",title:"Monitor Weekly",steps:["Check leaves weekly for early disease signs","Inspect undersides of leaves too","Look for unusual discoloration or spots","Act immediately if any symptoms appear"]},
+      {icon:"🌞",title:"Optimal Care",steps:["Ensure adequate sunlight for your crop","Maintain proper drainage to avoid waterlogging","Keep tools clean and sanitized","Remove weeds that can harbor diseases"]},
+    ]
+  },
+
 };
 
 function getRemedy(className) {
