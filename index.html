@@ -558,7 +558,10 @@ const statusText = document.getElementById('statusText');
 
 async function loadModel() {
   try {
-    model = await tmImage.load("./model/model.json","./model/metadata.json");
+    model = await tmImage.load(
+      "https://ARCHIT-RAVIKUMAR.github.io/ai-farm-assistant-/model/model.json",
+      "https://ARCHIT-RAVIKUMAR.github.io/ai-farm-assistant-/model/metadata.json"
+    );
     statusDot.classList.add('ready');
     statusText.textContent = "Model Ready ✓";
     document.getElementById('setupNotice').style.display = 'none';
