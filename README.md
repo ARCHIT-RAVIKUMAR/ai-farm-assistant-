@@ -1,6 +1,6 @@
-# AgriPulse 🐾 | AI Farming Assistant
+# AgriFury 🐾 | AI Farming Assistant
 
-**AgriPulse** is a simple, smart web application designed to help farmers instantly identify plant diseases and find effective remedies using AI.
+**AgriFury** is a simple, smart web application designed to help farmers instantly identify plant diseases and find effective remedies using AI.
 
 ## 🌿 Aim
 To develop a user-friendly assistant that identifies plant diseases through a smartphone camera or photo upload and provides immediate diagnostic results and treatment advice.
@@ -21,4 +21,4 @@ To develop a user-friendly assistant that identifies plant diseases through a sm
 * `model/`: Contains `model.json`, `metadata.json`, and `weights.bin`.
 
 ## 🔗 Live Demo
-[Launch AgriPulse Live](https://archit-ravikumar.github.io/ai-farm-assistant-/#detect)
+[Launch AgriFury Live](https://archit-ravikumar.github.io/ai-farm-assistant-/#detect)
