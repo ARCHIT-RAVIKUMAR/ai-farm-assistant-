@@ -20,5 +20,6 @@ To develop a user-friendly assistant that identifies plant diseases through a sm
 * `index.html`: The main dashboard and AI logic.
 * `model/`: Contains `model.json`, `metadata.json`, and `weights.bin`.
 
-## 🔗 Live Demo
+## 🔗 Live
 [Launch AgriFury Live](https://archit-ravikumar.github.io/ai-farm-assistant-/#detect)
+[Demo](https://screenrec.com/share/CibwRMKdlt)
