@@ -23,4 +23,4 @@ To develop a user-friendly assistant that identifies plant diseases through a sm
 ## 🔗 Live
 [Launch AgriFury Live](https://archit-ravikumar.github.io/ai-farm-assistant-/#detect)
 :)
-[Demo](https://screenrec.com/share/CibwRMKdlt)
+[Demo]()
